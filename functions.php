@@ -89,7 +89,7 @@
 		
 		//query all interests
 		
-		$mysql = new mysqli("localhost", $GLOBALS["db_username"], $GLOBALS["db_password"], "webpr2016_angecas");
+		$mysql = new mysqli("localhost", $GLOBALS["db_username"], $GLOBALS["db_password"], "webpr2016_angcas");
 		
 		$stmt = $mysql->prepare("SELECT id, name FROM interests ORDER BY name ASC");
 		
@@ -117,26 +117,27 @@
 	function saveUserInterest($interest_id){
 		
 		$mysql = new mysqli("localhost", $GLOBALS["db_username"], $GLOBALS["db_password"], "webpr2016_angcas");
-        
-       //if user already has the interest
+		
+		
+		//if user already has the interest
 		$stmt = $mysql->prepare("SELECT id FROM users_interests WHERE user_id = ? and interests_id = ?");
 		echo $mysql->error;
 		$stmt->bind_param("ii", $_SESSION["user_id"], $interest_id);
 		$stmt->execute();
-        
-   if($stmt->fetch()){
+		
+		if($stmt->fetch()){
 			// it existed
 			echo "you already have this interest";
 			return; //stop it there
 		}
-        
 		$stmt->close();
-              
+		
+		
+		
+		
 		$stmt = $mysql->prepare("INSERT INTO users_interests (user_id, interests_id) VALUES (?, ?)");
 		
 		echo $mysql->error;
-        
-
 		
 		//$_SESSION["user_id"] logged in user ID
 		$stmt->bind_param("ii", $_SESSION["user_id"], $interest_id);
@@ -149,8 +150,9 @@
 		
 	}
 	
-    
-function createUserInterestList(){
+	
+	function createUserInterestList(){
+		
 		
 		$mysql = new mysqli("localhost", $GLOBALS["db_username"], $GLOBALS["db_password"], "webpr2016_angcas");
 		

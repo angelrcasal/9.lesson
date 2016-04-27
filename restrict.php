@@ -30,34 +30,9 @@
 		}
 		
 	}
-
-    createInterestDropdow();
-?>
-
-<h2> Welcome <?php echo $_SESSION["name"];?> (<?=$_SESSION["user_id"];?>) </h2>
-
-<a href="?logout=1" >Log out</a>
-
-
-<h2>Add interest</h2>
-<form>
 	
-	<input type="text" name="new_interest">
-	<input type="submit" name="add_new_interest" value="Add">
-
-</form>
-
-
-<h2>Select user interest</h2>
-<form>
-    
-    <?php createInterestDropdown(); ?>
-	<input type="submit" name="select_interest" value="Add">
-
-</form>
-
-//someone clicled the button "select"
-if(isset($_GET["select_interest"])){
+	//someone clicked the button "select"
+	if(isset($_GET["select_interest"])){
 		
 		if(!empty($_GET["user_interest"])){
 			
@@ -68,8 +43,31 @@ if(isset($_GET["select_interest"])){
 		}
 		
 	}
+	
+	
+?>
+
+<h2> Welcome <?php echo $_SESSION["name"];?> (<?=$_SESSION["user_id"];?>) </h2>
+
+<a href="?logout=1" >Log out</a>
+
+<?php if($_SESSION["user_role"] == "Admin"){?>
+<h2>Add interest</h2>
+<form>
+	
+	<input type="text" name="new_interest">
+	<input type="submit" name="add_new_interest" value="Add">
+
+</form>
+<?php } ?>
+<h2>Select user interest</h2>
+<form>
+	
+	<?php createInterestDropdown(); ?>
+	<input type="submit" name="select_interest" value="Select">
+
+</form>
 
 
-
-
-
+<h1>Interests</h1>
+<?php createUserInterestList(); ?>

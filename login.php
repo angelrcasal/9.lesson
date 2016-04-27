@@ -74,4 +74,4 @@
 	
 	<input type="submit" name="signup" value="Sign up">
 	
-</form> 
+</form>
